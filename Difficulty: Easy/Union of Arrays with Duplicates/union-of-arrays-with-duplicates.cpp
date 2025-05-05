@@ -13,7 +13,6 @@ class Solution {
   public:
     // Function to return the count of number of elements in union of two arrays.
     int findUnion(vector<int>& a, vector<int>& b) {
-        // code here
         unordered_map<int,int>freq;
         
         for(int i : a){
@@ -22,15 +21,7 @@ class Solution {
         
         for(int j : b){
                 freq[j]++;
-            // if(!freq.count(j)){
-            // }
         }
-        
-        // vector<int>ans;
-        
-        // for(auto &it : freq){
-        //     ans.push_back(it.second);
-        // }
         
         return freq.size();
     }
