@@ -14,16 +14,37 @@ class Solution {
     // Function to check if two arrays are equal or not.
     bool checkEqual(vector<int>& a, vector<int>& b) {
         // code here
-        sort(a.begin(),a.end());
-        sort(b.begin(),b.end());
+        // sort(a.begin(),a.end());
+        // sort(b.begin(),b.end());
         
-        for(int i = 0; i < a.size(); i++){
-            if(a[i] != b[i]){
-                return false;
+        // for(int i = 0; i < a.size(); i++){
+        //     if(a[i] != b[i]){
+        //         return false;
+        //     }
+        // }
+        // return true;
+        // }
+      unordered_map<int,int>m;
+        
+        for(int i : a){
+            m[i]++;
+        }
+        
+        for(int i : b){
+            
+            if(m.count(i)){
+                m[i]--;
+            }
+            else{
+                m[i] = 1;
             }
         }
-        return true;
+        
+        for(auto &it : m){
+            if(it.second != 0) return flase;
         }
+        
+        return true;
 };
 
 
