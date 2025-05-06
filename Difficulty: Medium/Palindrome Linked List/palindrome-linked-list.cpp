@@ -38,32 +38,71 @@ struct Node {
 
 class Solution {
   public:
+        Node* reverse(Node* head) {
+        Node* prev = nullptr;
+        while (head != nullptr) {
+            Node* next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
     // Function to check whether the list is palindrome.
     bool isPalindrome(Node *head) {
         // Your code here
-        if(head == nullptr) return true;
+        // if(head == nullptr) return true;
         
-        vector<int>ans;
+        // vector<int>ans;
         
-        Node *temp = head;
+        // Node *temp = head;
         
-        while(temp != nullptr){
-            ans.push_back(temp->data);
-            temp = temp->next;
+        // while(temp != nullptr){
+        //     ans.push_back(temp->data);
+        //     temp = temp->next;
+        // }
+        
+        // int i = 0;
+        // int j = ans.size() - 1;
+        
+        // while(i <= j){
+        //     if(ans[i] != ans[j]){
+        //         return false;
+        //     }
+        //     i++;
+        //     j--;
+        // }
+        
+        // return true;
+        
+        if (head == nullptr || head->next == nullptr) return true;
+        
+        Node *first = head;
+        Node *slow = head;
+        
+        
+        while(first != nullptr && first->next != nullptr){
+            first = first->next->next;
+            slow = slow->next;
         }
         
-        int i = 0;
-        int j = ans.size() - 1;
+        Node* secondHalf = reverse(slow);
+
+        Node *firstHalf = head;
+        Node *tempSecond = secondHalf;
         
-        while(i <= j){
-            if(ans[i] != ans[j]){
+        while(tempSecond != nullptr){
+            if(firstHalf->data != tempSecond->data){
                 return false;
             }
-            i++;
-            j--;
+            
+            firstHalf = firstHalf->next;
+            tempSecond = tempSecond->next;
         }
         
         return true;
+        
+        
     }
 };
 
