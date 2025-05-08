@@ -11,7 +11,7 @@ class Solution {
     vector<int> frequencyCount(vector<int>& arr) {
         // code here
         unordered_map<int,int>freq;
-        vector<int>ans(arr.size(),0);
+        // vector<int>ans(arr.size(),0);
         
         for(int i : arr){
             freq[i]++;
@@ -22,12 +22,15 @@ class Solution {
             auto it = freq.find(i);
             
             if(it != freq.end()){
-                ans[i - 1] = it->second;
+                arr[i - 1] = it->second;
+            }
+            else{
+                arr[i - 1] = 0;
             }
     
         }
         
-        return ans;
+        return arr;
     }
 };
 
